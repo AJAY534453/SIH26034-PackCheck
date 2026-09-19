@@ -3,15 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import { api } from '../services/api'
 import { Card } from '../components/Badges'
 import { Icon } from '../components/Icon'
+import VisionPanel, { VisionStatusLine } from '../components/VisionPanel'
 import { Confidence, DecisionBanner, EmptyState, StatusBadge, useToast } from '../components/ui'
-import type { AIStatus, ImageOut, InspectionDetail, InspectionSummary } from '../types'
+import type { AIStatus, ImageOut, InspectionDetail, InspectionProgressOut, InspectionSummary } from '../types'
 
 const ROLES = ['FRONT', 'BACK', 'LEFT_SIDE', 'RIGHT_SIDE', 'TOP', 'BOTTOM', 'CLOSE_UP', 'ADDITIONAL_EVIDENCE']
 
 /**
- * The pipeline as executed by the backend. `vision_extraction` is an OPTIONAL stage: it runs
- * only when a vision provider is configured, and it is reported as `skipped` otherwise so the
- * operator can see exactly which perception sources produced the result.
+ * The pipeline as executed by the backend.
+ *
+ * `visual_analysis` is the ON-DEVICE vision engine: it always runs (no API key, no network) and the
+ * stage is reported `done` or `failed` from what actually happened, never from what was configured.
+ * `provider_extraction` is the optional third-party provider — `skipped` when no key is configured,
+ * `done` when it contributed readings, and any failure is recorded verbatim on the inspection.
  */
 const STAGES: [string, string][] = [
   ['upload_validation', 'Upload validation'],
@@ -20,7 +24,8 @@ const STAGES: [string, string][] = [
   ['preprocessing', 'Preprocessing'],
   ['text_detection_ocr', 'Text detection / OCR'],
   ['region_ocr', 'Region OCR'],
-  ['vision_extraction', 'Vision extraction (optional)'],
+  ['visual_analysis', 'Vision analysis (on-device)'],
+  ['provider_extraction', 'Vision provider (optional)'],
   ['candidate_generation', 'Candidate generation'],
   ['field_extraction', 'Field extraction'],
   ['normalization', 'Normalization'],
@@ -73,6 +78,11 @@ export default function NewInspection() {
   const [detail, setDetail] = useState<InspectionDetail | null>(null)
   const [images, setImages] = useState<ImageOut[]>([])
   const [stageStatus, setStageStatus] = useState<Record<string, string>>({})
+  // Real wall-clock milliseconds per stage, recorded by the backend — and the elapsed time of the
+  // run in progress. Nothing here is a synthetic progress animation.
+  const [timings, setTimings] = useState<Record<string, number>>({})
+  const [durationMs, setDurationMs] = useState(0)
+  const [elapsed, setElapsed] = useState(0)
   const [status, setStatus] = useState('')
   const [decision, setDecision] = useState<string | null>(null)
   const [summary, setSummary] = useState('')
@@ -126,27 +136,39 @@ export default function NewInspection() {
   }
 
   async function poll(id: number) {
-    for (let i = 0; i < 60; i++) {
-      const p = await api.get<{ id: number; status: string; stage_status: Record<string, string>; final_decision: string | null }>(
-        `/inspections/${id}/progress`,
-      )
+    // The result renders on THIS page — no redirect is issued for the primary outcome. The stage
+    // list shows the real per-stage milliseconds the backend recorded, not a progress animation.
+    for (let i = 0; i < 90; i++) {
+      const p = await api.get<InspectionProgressOut>(`/inspections/${id}/progress`)
       setStageStatus(p.stage_status || {})
+      setTimings(p.stage_timings || {})
       setStatus(p.status)
-      if (p.final_decision) {
+      if (p.final_decision || p.status === 'FAILED') {
         setDecision(p.final_decision)
+        setDurationMs(p.duration_ms || 0)
         const d = await api.get<InspectionDetail>(`/inspections/${id}`)
         setDetail(d)
         setSummary(d.summary || '')
+        if (p.status === 'FAILED') {
+          setError(d.summary || 'The pipeline could not complete. No partial result was presented as final.')
+        }
         return
       }
       await new Promise((r) => setTimeout(r, 1000))
     }
-    setError('Processing is taking longer than expected. Open the inspection to see its current state.')
+    setError(
+      'Processing is taking longer than expected. The inspection is saved — open it from Inspections to see its current state.',
+    )
   }
 
   async function start() {
     setBusy(true)
     setError('')
+    setTimings({})
+    setDurationMs(0)
+    setElapsed(0)
+    const startedAt = Date.now()
+    const ticker = setInterval(() => setElapsed(Date.now() - startedAt), 500)
     try {
       const insp = await api.post<InspectionSummary>('/inspections')
       setInspection(insp)
@@ -160,8 +182,30 @@ export default function NewInspection() {
       setError(e instanceof Error ? e.message : 'Inspection failed')
       setStatus('')
     } finally {
+      clearInterval(ticker)
       setBusy(false)
     }
+  }
+
+  /**
+   * NEW SCAN clears THIS workspace only. The inspection that was just completed keeps its record,
+   * its images, its declarations and its evidence — it is already persisted, and nothing here
+   * deletes or reuses it. A new inspection (with its own ID) is created on the next scan.
+   */
+  function newScan() {
+    setInspection(null)
+    setDetail(null)
+    setImages([])
+    setStageStatus({})
+    setTimings({})
+    setDurationMs(0)
+    setElapsed(0)
+    setDecision(null)
+    setSummary('')
+    setStatus('')
+    setPending([])
+    setGroceryAdded(false)
+    setError('')
   }
 
   function stageState(key: string): string {
@@ -194,6 +238,10 @@ export default function NewInspection() {
     }
   }
 
+  const fieldValue = (name: string) => detail?.fields.find((f) => f.field_name === name)?.display_value || ''
+  // The automated review payload is the ONLY source of the percentages shown below, so the result
+  // header can never disagree with the arithmetic that produced the score.
+  const review = detail && 'compliance_score' in detail.compliance_review ? detail.compliance_review : null
   const fields = detail?.fields ?? []
   const critical = fields.filter((f) => ['CONFLICTING', 'UNCERTAIN'].includes(f.state) && (f.display_value || f.uncertainty_reason))
   const confirmed = fields.filter((f) => f.state === 'DETECTED')
@@ -217,7 +265,7 @@ export default function NewInspection() {
           {ai && (
             <span className={`mode-pill ${ai.enabled ? 'vision' : 'offline'}`} title={ai.reason}>
               <Icon name={ai.enabled ? 'sparkles' : 'cpu'} size={13} />
-              {ai.enabled ? `Vision ${ai.model} + OCR` : 'On-device OCR'}
+              {ai.enabled ? `Provider ${ai.model} + on-device vision + OCR` : 'On-device vision + OCR'}
             </span>
           )}
         </div>
@@ -345,7 +393,18 @@ export default function NewInspection() {
                 return (
                   <div className={`stage ${st}`} key={key}>
                     <span className="dot" aria-hidden="true">{dot}</span> {label}
-                    {st === 'skipped' && <span className="muted"> (not required for this run)</span>}
+                    {timings[key] != null && (
+                      <span className="muted"> · {(timings[key] / 1000).toFixed(1)} s</span>
+                    )}
+                    {st === 'skipped' && (
+                      <span className="muted">
+                        {key === 'provider_extraction'
+                          ? ai?.enabled
+                            ? ' (provider returned no reading)'
+                            : ' (no provider configured)'
+                          : ' (not required for this run)'}
+                      </span>
+                    )}
                   </div>
                 )
               })}
@@ -354,6 +413,66 @@ export default function NewInspection() {
 
           {decision && detail && (
             <>
+              <Card title="Inspection result">
+                <div className="kv">
+                  <dt>Inspection ID</dt>
+                  <dd><b className="mono">{inspection.inspection_number}</b></dd>
+                  <dt>Product</dt>
+                  <dd>
+                    {fieldValue('product_name') || <span className="muted">not read from the supplied images</span>}
+                    {fieldValue('brand') && <span className="muted"> · {fieldValue('brand')}</span>}
+                  </dd>
+                  <dt>Category</dt>
+                  <dd>
+                    {detail.category} <span className="muted">({detail.category_state.toLowerCase()})</span>
+                  </dd>
+                  <dt>Image quality</dt>
+                  <dd>
+                    <StatusBadge value={detail.overall_quality} />{' '}
+                    <Confidence value={detail.overall_quality_score} showMark={false} />
+                  </dd>
+                  <dt>AI preliminary verdict</dt>
+                  <dd><StatusBadge value={detail.final_decision || 'NEEDS_MANUAL_REVIEW'} /></dd>
+                  <dt>Official decision</dt>
+                  <dd>
+                    {detail.official_decision ? (
+                      <StatusBadge value={detail.official_decision} />
+                    ) : (
+                      <span className="muted">
+                        Pending — an automated verdict is not an official Legal Metrology decision
+                      </span>
+                    )}
+                  </dd>
+                  <dt>Compliance / coverage</dt>
+                  <dd>
+                    {review ? (
+                      <>
+                        <b>{review.compliance_score}%</b> compliance · <b>{review.coverage_score}%</b> evidence
+                        coverage <span className="muted">· application threshold {review.threshold}%</span>
+                      </>
+                    ) : (
+                      <span className="muted">Automated review not available for this run.</span>
+                    )}
+                  </dd>
+                  <dt>Review status</dt>
+                  <dd>
+                    {review ? (
+                      <>
+                        {review.status_text || review.report_status_label}
+                        <div className="muted">{review.status_message}</div>
+                      </>
+                    ) : (
+                      '—'
+                    )}
+                  </dd>
+                  <dt>Pipeline duration</dt>
+                  <dd>{(detail.duration_ms || durationMs) ? `${((detail.duration_ms || durationMs) / 1000).toFixed(1)} s` : '—'}</dd>
+                </div>
+                <div className="mt">
+                  <VisionStatusLine vision={detail.vision} />
+                </div>
+              </Card>
+
               <DecisionBanner decision={decision} why={summary}>
                 <button className="btn" onClick={() => navigate(`/inspections/${inspection.id}`)}>
                   <Icon name="search-check" /> Review evidence
@@ -492,24 +611,31 @@ export default function NewInspection() {
                     </table>
                   </Card>
 
-                  <div className="flex">
-                    <button
-                      className="btn secondary"
-                      onClick={() => {
-                        setInspection(null)
-                        setDetail(null)
-                        setImages([])
-                        setStageStatus({})
-                        setDecision(null)
-                        setSummary('')
-                        setStatus('')
-                        setPending([])
-                        setGroceryAdded(false)
-                      }}
-                    >
-                      <Icon name="refresh-cw" /> New inspection
-                    </button>
-                  </div>
+                  <Card title="Vision analysis (on-device)">
+                    <VisionPanel vision={detail.vision} images={detail.images} evidence={detail.evidence} />
+                  </Card>
+
+                  <Card title="Start the next inspection">
+                    <p className="muted">
+                      <b>{inspection.inspection_number}</b> is saved with its images, declarations, evidence
+                      and analysis version. It stays in <b>Inspections</b> and in the compliance{' '}
+                      <b>Repository</b> — starting the next scan clears only this workspace and never
+                      overwrites it.
+                    </p>
+                    <div className="flex mt">
+                      <button className="btn" onClick={newScan}>
+                        <Icon name="scan-line" /> NEW SCAN
+                      </button>
+                      <button className="btn secondary" onClick={() => navigate(`/inspections/${inspection.id}`)}>
+                        <Icon name="search-check" /> Open the saved inspection
+                      </button>
+                      {review && (
+                        <button className="btn secondary" onClick={() => navigate(`/repository/${review.id}`)}>
+                          <Icon name="history" /> Open in the repository
+                        </button>
+                      )}
+                    </div>
+                  </Card>
                 </div>
               </div>
             </>
@@ -518,9 +644,16 @@ export default function NewInspection() {
           {!decision && (
             <Card title="Reading the package">
               <p className="muted">
-                The pipeline is running. Images are preserved byte-for-byte first, then assessed for
-                quality, preprocessed, read by the on-device OCR engine{ai?.enabled ? ' and the vision provider' : ''},
-                and finally turned into validated declarations with evidence regions.
+                The pipeline is running. Images are preserved byte-for-byte first, then assessed for quality
+                and read by the on-device OCR engine{' '}
+                <b>in parallel with the on-device vision engine</b>
+                {ai?.enabled ? ', while the configured vision provider contributes additional readings' : ''}.
+                Declarations are then fused, validated against the active rule versions and retained with
+                their evidence regions.
+              </p>
+              <p className="muted">
+                {elapsed ? `${(elapsed / 1000).toFixed(1)} s elapsed` : 'starting…'}
+                {durationMs ? ` · ${(durationMs / 1000).toFixed(1)} s total for the last completed run` : ''}
               </p>
             </Card>
           )}

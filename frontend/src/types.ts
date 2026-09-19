@@ -227,6 +227,19 @@ export interface ViolationOut {
   confidence: number
 }
 
+/** GET /inspections/{id}/progress — the running pipeline's real state and per-stage timings. */
+export interface InspectionProgressOut {
+  status: string
+  stage_status: Record<string, string>
+  stage_timings: Record<string, number>
+  duration_ms: number
+  vision_status: string
+  vision_engine: string
+  provider_status: string
+  final_decision: string | null
+  official_decision: string | null
+}
+
 export interface EvidenceOut {
   id: number
   field_name: string
@@ -238,6 +251,8 @@ export interface EvidenceOut {
   confidence: number
   extraction_method: string
   note?: string
+  /** "field" | "rule" | "vision" | "image" — separates a visual observation from a declaration crop. */
+  related_type?: string
 }
 
 export interface ReviewActionOut {
@@ -280,6 +295,14 @@ export interface InspectionDetail extends InspectionSummary {
     last_reprocessed_at: string
   }
   classification_signals: string
+  /** Real wall-clock milliseconds per pipeline stage for the run that produced this result. */
+  stage_timings: Record<string, number>
+  /** Which perception sources actually ran (on-device vision always; a provider is additive). */
+  vision_status: string
+  vision_engine: string
+  provider_status: string
+  duration_ms: number
+  vision: VisionPayload
   compliance_review: ScanDetailPayload | Record<string, never>
   font_size: { status: string; reason: string; detail: Record<string, unknown> }
   calibration: {
@@ -290,6 +313,94 @@ export interface InspectionDetail extends InspectionSummary {
     panel_height_mm: number | null
     pdp_area_cm2: number | null
     packaging_form: string
+  }
+}
+
+// ---------- on-device vision ----------
+/**
+ * One region or measurement retained by the on-device vision engine. These are OBSERVATIONS of the
+ * image (bbox, printed height, prominence, contrast, readability) — never declaration values, and
+ * never a legal conclusion.
+ */
+export interface VisionRegionOut {
+  id: number
+  image_id: number | null
+  kind: 'PANEL' | 'TEXT_BLOCK' | 'SYMBOL' | 'LEGIBILITY' | string
+  label: string
+  bbox: string
+  text: string
+  confidence: number
+  prominence: number
+  contrast: number
+  sharpness: number
+  text_density: number
+  engine: string
+  note: string
+}
+
+export interface VisionPayload {
+  status: string
+  engine: string
+  note: string
+  provider_status: string
+  provider_note: string
+  regions: VisionRegionOut[]
+}
+
+/** GET /health/vision — the always-on engine plus what the last real run recorded. */
+export interface VisionHealth {
+  engine: string
+  status: string
+  on_device: { available: boolean; detail: string }
+  provider: string
+  model: string
+  configured: boolean
+  reachable: boolean | null
+  reachable_note: string
+  last_successful_run: {
+    inspection_number: string
+    at: string
+    vision_status: string
+    vision_status_text: string
+    engine: string
+    provider_status: string
+    vision_ms: number | null
+    provider_ms: number | null
+    duration_ms: number
+  } | null
+  last_error: string
+  latency_ms: number | null
+}
+
+/** POST /vision/test — a live check of both perception sources over one image. */
+export interface VisionTestResult {
+  provider: string
+  model: string
+  configured: boolean
+  provider_reason: string
+  reachable?: boolean
+  errors: string[]
+  on_device: {
+    engine?: string
+    status?: string
+    error?: string
+    readability?: string
+    ocr_lines_used?: number
+    hero_text?: string
+    hero_bbox?: number[] | null
+    latency_ms?: number
+    image?: { width: number; height: number }
+    metrics?: { sharpness: number; contrast: number; glare: number; shadow: number }
+    regions?: { kind: string; label: string; bbox: number[] | null; confidence: number; prominence: number }[]
+  }
+  provider_call: {
+    attempted: boolean
+    status: string
+    latency_ms: number | null
+    observations: number
+    error: string
+    detail?: string
+    fields?: { field: string; value: string; confidence: number; source_image: string }[]
   }
 }
 

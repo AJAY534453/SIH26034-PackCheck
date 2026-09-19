@@ -18,6 +18,8 @@ import type {
   GroceryListResponse,
   ImageAnalysis,
   ListingConsistency,
+  VisionHealth,
+  VisionTestResult,
   ListingDeclarationCheck,
   ListingOut,
   ListingRow,
@@ -242,6 +244,14 @@ export const api = {
 
   // ---- vision provider status ----
   aiStatus: () => request<AIStatus>('/ai/status'),
+
+  // ---- vision health + live self-test ----
+  visionHealth: () => request<VisionHealth>('/health/vision'),
+  visionTest: (file: File) => {
+    const form = new FormData()
+    form.append('file', file)
+    return request<VisionTestResult>('/vision/test', { method: 'POST', body: form })
+  },
 
   // ---- image analysis (capture -> enhance -> OCR) ----
   analyze: (file: File, mode: 'auto' | 'full' | 'text' = 'auto') => {
