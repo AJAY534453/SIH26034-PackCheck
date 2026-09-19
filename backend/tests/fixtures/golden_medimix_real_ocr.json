@@ -1,0 +1,67 @@
+{
+  "source": "Medimix Ayurvedic Soap with 18 Herbs — real pack photographs (three surfaces: front carton, back label, side label)",
+  "provenance": "OCR-LAYER FIXTURE. These are the recogniser outputs retained in the application's own evidence store for the photographed Medimix pack (image roles FRONT / ADDITIONAL_EVIDENCE), reproduced verbatim including their fused word boundaries ('AYURVEDIC SOAPWITH18HERBS', 'Mfd.By:', 'MADEININDIA') and their misreadings. It is the harder sibling of golden_medimix_ocr.json: that fixture carries clean text, this one carries what the recogniser actually returns, which is what the correction logic has to survive. Nothing here is edited for convenience.",
+  "roles": ["FRONT", "ADDITIONAL_EVIDENCE", "ADDITIONAL_EVIDENCE"],
+  "distinguishes": [
+    "an OCR-fused product title ('AYURVEDIC SOAPWITH18HERBS') is repaired for display without inventing characters",
+    "a printed RELATIONSHIP INSTRUCTION ('For Mfd. Unit Address, please refer to the first character of the Batch No.') must never become the product name or the brand",
+    "the entity declaration 'Mfd.By:Licensed TM Users:AvA Cholayil Health Care Pvt.Ltd., <address>' separates the entity name from its printed address",
+    "a misread MRP ('F280.00') stays NOT DETECTED rather than being published as a price",
+    "a cosmetic soap is classified as a cosmetic, never as food"
+  ],
+  "ocr_lines": [
+    { "image": 1, "text": "FREE!", "confidence": 0.82, "bbox": [250, 88, 484, 493], "variant": "original" },
+    { "image": 1, "text": "750g(4Nx150g+1Nx150gFree)", "confidence": 0.9, "bbox": [221, 116, 262, 537], "variant": "original" },
+    { "image": 1, "text": "SUPERSAVER", "confidence": 0.83, "bbox": [856, 126, 915, 477], "variant": "original" },
+    { "image": 1, "text": "PACK", "confidence": 0.8, "bbox": [792, 229, 848, 371], "variant": "original" },
+    { "image": 1, "text": "AVA", "confidence": 0.73, "bbox": [814, 573, 875, 676], "variant": "original" },
+    { "image": 1, "text": "AYURVEDIC SOAPWITH18HERBS", "confidence": 0.92, "bbox": [344, 780, 379, 1299], "variant": "original" },
+    { "image": 1, "text": "effectivefor skin problems", "confidence": 0.91, "bbox": [309, 867, 343, 1214], "variant": "original" },
+    { "image": 1, "text": "MEDIMI", "confidence": 0.69, "bbox": [692, 746, 813, 1237], "variant": "original" },
+
+    { "image": 2, "text": "ANAYURVEDICPROPRIETARYMEDICINE", "confidence": 0.96, "bbox": [425, 371, 852, 399], "variant": "original" },
+    { "image": 2, "text": "FOREXTERNALUSEONLY.CONTAINSNOANIMALFAT.", "confidence": 0.92, "bbox": [359, 399, 917, 430], "variant": "original" },
+    { "image": 2, "text": "750g(4Nx150g+1Nx150gFree)", "confidence": 0.89, "bbox": [398, 442, 887, 481], "variant": "original" },
+    { "image": 2, "text": "(WhenPacked)", "confidence": 0.91, "bbox": [232, 480, 371, 510], "variant": "original" },
+    { "image": 2, "text": "T.F.M.:62%ToiletSoapGr.3", "confidence": 0.91, "bbox": [233, 521, 539, 549], "variant": "original" },
+    { "image": 2, "text": "MRP(Incl.ofalltaxes):", "confidence": 0.87, "bbox": [233, 574, 507, 609], "variant": "original" },
+    { "image": 2, "text": "F280.00", "confidence": 0.72, "bbox": [806, 578, 1064, 623], "variant": "original" },
+    { "image": 2, "text": "Unit SalePrice/g:", "confidence": 0.84, "bbox": [233, 623, 509, 659], "variant": "original" },
+    { "image": 2, "text": "20426/09CF", "confidence": 0.81, "bbox": [584, 655, 1023, 699], "variant": "original" },
+    { "image": 2, "text": "Batch No.", "confidence": 0.85, "bbox": [234, 671, 357, 702], "variant": "original" },
+    { "image": 2, "text": "04/26", "confidence": 0.75, "bbox": [583, 694, 775, 738], "variant": "original" },
+    { "image": 2, "text": "Mfg.&UseBefore:", "confidence": 0.91, "bbox": [236, 719, 478, 752], "variant": "original" },
+    { "image": 2, "text": "ForMfd.UnitAddress,pleaserefertothefirstcharacterattheBatch no.", "confidence": 0.89, "bbox": [235, 782, 929, 811], "variant": "original" },
+    { "image": 2, "text": "Mfd.By:Licensed TM Users:AvA Cholayil Health Care Pvt.Ltd.,", "confidence": 0.86, "bbox": [236, 813, 918, 841], "variant": "original" },
+    { "image": 2, "text": "No.44&45,Jarbuli Road.Madhavaram,Chennai-600060.M.L.No.:1102", "confidence": 0.86, "bbox": [240, 841, 1040, 874], "variant": "original" },
+    { "image": 2, "text": "2No.61,62&63,SDC0IndustrialEstate,Thirumazhisai,Chennai-600124.", "confidence": 0.83, "bbox": [240, 875, 1024, 906], "variant": "original" },
+    { "image": 2, "text": "M.L.No.:1103", "confidence": 0.86, "bbox": [276, 905, 426, 928], "variant": "original" },
+    { "image": 2, "text": "4No.283/1,OdhiampetVillageVillianurPost,Puducherry-605110", "confidence": 0.83, "bbox": [241, 929, 936, 962], "variant": "original" },
+    { "image": 2, "text": "M.L.No.:ISM152/PP/94", "confidence": 0.86, "bbox": [276, 960, 536, 984], "variant": "original" },
+    { "image": 2, "text": "Bengaluru-561203.M.LNo.:AUS-579MADEININDIA", "confidence": 0.91, "bbox": [277, 1019, 858, 1047], "variant": "original" },
+
+    { "image": 3, "text": "MEDiMIX", "confidence": 0.8, "bbox": [287, 480, 687, 563], "variant": "original" },
+    { "image": 3, "text": "Medimix is atraditionallymadesoapwithpurevegetableoils", "confidence": 0.94, "bbox": [124, 724, 851, 759], "variant": "original" },
+    { "image": 3, "text": "in auniqueformulationof 18herbsthatactsgentlybuteffectively", "confidence": 0.91, "bbox": [110, 758, 866, 793], "variant": "original" },
+    { "image": 3, "text": "onmanykindsofskinproblem.", "confidence": 0.93, "bbox": [304, 792, 668, 825], "variant": "original" },
+    { "image": 3, "text": "MEDIMIX@75", "confidence": 0.9, "bbox": [316, 862, 700, 896], "variant": "original" },
+    { "image": 3, "text": "customercare@avacare.in", "confidence": 0.9, "bbox": [311, 933, 700, 964], "variant": "original" },
+    { "image": 3, "text": "www.mymedimix.com", "confidence": 0.92, "bbox": [315, 977, 690, 1008], "variant": "original" },
+    { "image": 3, "text": "Consumer Care:18001031282", "confidence": 0.89, "bbox": [312, 1013, 712, 1046], "variant": "original" }
+  ],
+  "expected_fields": {
+    "product_name": { "value": "AYURVEDIC SOAP WITH 18 HERBS" },
+    "brand": { "value": "MEDIMIX" },
+    "manufacturer": { "value_contains": "Cholayil", "must_not_contain": "refer" },
+    "manufacturer_address": { "value_contains": "Jarbuli" },
+    "consumer_care_email": { "value_contains": "avacare.in" },
+    "consumer_care_phone": { "value_contains": "18001031282" },
+    "website": { "value_contains": "mymedimix" }
+  },
+  "expected_category": "COSMETIC",
+  "must_not_be_product_name": [
+    "ForMfd.UnitAddress,pleaserefertothefirstcharacterattheBatch no.",
+    "For Mfd. Unit Address, please refer to the first character at the Batch no."
+  ],
+  "must_not_be_brand": ["ForMfd", "For", "Licensed", "ANAYURVEDICPROPRIETARYMEDICINE"]
+}

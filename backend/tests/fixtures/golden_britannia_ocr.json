@@ -1,0 +1,41 @@
+{
+  "source": {
+    "product": "Britannia 50-50 Classic Sweet & Salty (real-photo test case, multi-surface)",
+    "note": "OCR lines transcribed from the real package photos. Expected values are SEMANTIC: the test asserts declaration TYPE and separation (product vs brand vs manufacturer, whole quantity declarations, date-label association, alphanumeric batch codes), never a hardcoded shortcut in production code."
+  },
+  "ocr_lines": [
+    {"text": "BRITANNIA", "confidence": 0.95, "bbox": [70, 40, 520, 130], "variant": "original"},
+    {"text": "50-50", "confidence": 0.93, "bbox": [80, 150, 300, 205], "variant": "original"},
+    {"text": "Classic Sweet & Salty", "confidence": 0.9, "bbox": [80, 212, 470, 252], "variant": "original"},
+    {"text": "Made with real butter", "confidence": 0.72, "bbox": [90, 262, 400, 285], "variant": "original"},
+    {"text": "Manufactured & Marketed by", "confidence": 0.88, "bbox": [40, 300, 430, 322], "variant": "original"},
+    {"text": "Britannia Industries Limited", "confidence": 0.9, "bbox": [40, 326, 430, 348], "variant": "original"},
+    {"text": "No. 5, 3rd Floor, Prestige Shantiniketan,", "confidence": 0.85, "bbox": [40, 352, 500, 372], "variant": "original"},
+    {"text": "Whitefield Main Road, Bengaluru - 560048,", "confidence": 0.84, "bbox": [40, 376, 500, 396], "variant": "original"},
+    {"text": "Karnataka, India", "confidence": 0.9, "bbox": [40, 400, 260, 420], "variant": "original"},
+    {"text": "Net Wt. 28.4 g + 6.1 g EXTRA = 34.5 g", "confidence": 0.9, "bbox": [40, 430, 500, 456], "variant": "original"},
+    {"text": "MRP Rs. 5.00 (Inclusive of all taxes)", "confidence": 0.9, "bbox": [40, 462, 480, 486], "variant": "original"},
+    {"text": "PKD 20/07/26", "confidence": 0.88, "bbox": [40, 494, 300, 516], "variant": "original"},
+    {"text": "USE BY 19/01/27", "confidence": 0.88, "bbox": [40, 522, 320, 544], "variant": "original"},
+    {"text": "Batch B07269L", "confidence": 0.86, "bbox": [40, 550, 300, 572], "variant": "original"},
+    {"text": "FSSAI Lic. No. 10015043001129", "confidence": 0.91, "bbox": [40, 578, 380, 600], "variant": "original"},
+    {"text": "Consumer Care: 1800-123-4567  care@britannia.co.in", "confidence": 0.87, "bbox": [40, 606, 500, 628], "variant": "original"},
+    {"text": "www.britannia.co.in", "confidence": 0.89, "bbox": [40, 634, 300, 656], "variant": "original"}
+  ],
+  "expected_fields": {
+    "product_name": {"value_contains": "Classic Sweet & Salty", "must_not_contain": "Industries"},
+    "brand": {"value_contains": "BRITANNIA", "uncertain": true},
+    "manufacturer": {"value_contains": "Britannia Industries"},
+    "manufacturer_address": {"detected": true},
+    "net_quantity": {"value": "34.5", "unit": "g", "declared_as": "28.4 g + 6.1 g EXTRA = 34.5 g"},
+    "mrp": {"value_contains": "5.00"},
+    "date_packing": {"value_contains": "2026-07-20"},
+    "date_expiry": {"value_contains": "2027-01-19"},
+    "batch_lot": {"value": "B07269L"},
+    "fssai_license": {"value_contains": "10015043001129"},
+    "consumer_care_phone": {"value_contains": "18001234567"},
+    "consumer_care_email": {"value_contains": "care@britannia.co.in"},
+    "website": {"value_contains": "britannia.co.in"}
+  },
+  "never_auto_absent": ["manufacturer", "net_quantity", "mrp", "date_packing", "date_expiry"]
+}

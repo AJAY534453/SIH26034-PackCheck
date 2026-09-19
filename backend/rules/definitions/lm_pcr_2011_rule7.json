@@ -1,0 +1,66 @@
+{
+  "source_document": "Legal Metrology (Packaged Commodities) Rules, 2011 — Rule 7 (Principal display panel - its area, size and letter etc.)",
+  "source_reference": "LM (PC) Rules, 2011, Rule 7(1)-(5) with Table-I and Table-II, as substituted by Notification G.S.R. 629(E) dated 23.06.2017 (w.e.f. 07.03.2011), Department of Consumer Affairs, Ministry of Consumer Affairs, Food & Public Distribution",
+  "source_url": "https://consumeraffairs.gov.in/public/upload/admin/cmsfiles/whatsnews/Book_on_Legal_Metrology_Packaged_Commodities_Rules,2011_with_all_amendments_whatsnews.pdf",
+  "disclaimer": "The rule data below is the minimum-height table of Rule 7 transcribed for engineering use. The Official Gazette text is authoritative and must be re-checked whenever the rule is amended: updating THIS file is the only change required — no application code reads a font size from anywhere else.",
+  "rules": [
+    {
+      "rule_id": "LM-PCR-7FONT",
+      "rule_number": "7(2), 7(3)",
+      "title": "Height (font size) of numerals and letters in declarations",
+      "description": "Rule 7(2): the height of any numeral and letter in a declaration required by these rules must be at least the minimum in Table-I (net quantity declared by weight or volume) or Table-II (net quantity declared by length, area or number), selected by the area of the principal display panel. Rule 7(3): the width of a letter or numeral must not be less than one third of its height, except the numeral '1' and the letters (i), (I) and (l). Rule 7(4) defines how the area of the principal display panel is determined (rectangular: height x width of that side; cylindrical: 40% of height x circumference; other shapes: 40% of total surface or the panel actually considered).",
+      "requirement": "Every numeral and letter in a required declaration must reach at least the minimum height prescribed by Rule 7 Table-I / Table-II for the area of the principal display panel (and the 'blown, formed or molded' column where the declaration is moulded into the container surface), with width not less than one third of height.",
+      "source_reference": "LM (PC) Rules, 2011 — Rule 7(2), 7(3) and Table-I / Table-II (substituted by G.S.R. 629(E), 23.06.2017)",
+      "amendment": "Table-I and Table-II substituted by G.S.R. 629(E) dated 23.06.2017; Table-II of the pre-2017 text (net quantity by length/area/number) was re-inserted by the same notification.",
+      "effective_from": "2017-06-23",
+      "applicability": { "packaging": "retail_package" },
+      "check_type": "font_size",
+      "weight": 1.0,
+      "critical": false,
+      "params": {
+        "method": "MEASURED_FROM_IMAGE_WITH_SCALE_CALIBRATION",
+        "width_ratio_min": 0.3333,
+        "cap_height_ratio": 0.75,
+        "borderline_tolerance": 0.9,
+        "exempt_rule7_5": "Rule 7(5): the size of the numbers and letters declaring net weight, retail sale price, date of expiry or best before or use by date and consumer care details is ALWAYS subject to this rule — the exemption in Rule 7(5) (information also required under another law) does not cover them.",
+        "table_selection": {
+          "weight_or_volume": "Table-I",
+          "length_area_or_number": "Table-II"
+        },
+        "table_i": {
+          "id": "Table-I",
+          "title": "Minimum height — net quantity declared in terms of weight or volume",
+          "units": "mm",
+          "brackets": [
+            { "serial": 1, "min_area_cm2": 0, "max_area_cm2": 50, "label": "A < 50 cm2", "normal_mm": 1.0, "moulded_mm": 1.5 },
+            { "serial": 2, "min_area_cm2": 50, "max_area_cm2": 100, "label": "50 < A < 100 cm2", "normal_mm": 1.5, "moulded_mm": 3.0 },
+            { "serial": 3, "min_area_cm2": 100, "max_area_cm2": 500, "label": "100 < A < 500 cm2", "normal_mm": 2.5, "moulded_mm": 4.0 },
+            { "serial": 4, "min_area_cm2": 500, "max_area_cm2": 2500, "label": "500 < A < 2500 cm2", "normal_mm": 4.0, "moulded_mm": 6.0 },
+            { "serial": 5, "min_area_cm2": 2500, "max_area_cm2": null, "label": "A > 2500 cm2", "normal_mm": 6.0, "moulded_mm": 6.0 }
+          ]
+        },
+        "table_ii": {
+          "id": "Table-II",
+          "title": "Minimum height — net quantity declared in terms of length, area or number",
+          "units": "mm",
+          "brackets": [
+            { "serial": 1, "min_area_cm2": 0, "max_area_cm2": 100, "label": "Upto 100 cm2", "normal_mm": 1.0, "moulded_mm": 2.0 },
+            { "serial": 2, "min_area_cm2": 100, "max_area_cm2": 500, "label": "Above 100 cm2 and upto 500 cm2", "normal_mm": 2.0, "moulded_mm": 4.0 },
+            { "serial": 3, "min_area_cm2": 500, "max_area_cm2": 2500, "label": "Above 500 cm2 and upto 2500 cm2", "normal_mm": 4.0, "moulded_mm": 6.0 },
+            { "serial": 4, "min_area_cm2": 2500, "max_area_cm2": null, "label": "Above 2500 cm2", "normal_mm": 6.0, "moulded_mm": 6.0 }
+          ]
+        },
+        "declaration_fields": [
+          "net_quantity",
+          "mrp",
+          "unit_sale_price",
+          "date_expiry",
+          "date_best_before",
+          "consumer_care_phone",
+          "consumer_care_email",
+          "consumer_care_address"
+        ]
+      }
+    }
+  ]
+}

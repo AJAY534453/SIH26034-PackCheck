@@ -1,0 +1,66 @@
+{
+  "source": "Medimix Ayurvedic Soap with 18 Herbs — the SIH regression pack (front + back of one retail pack)",
+  "provenance": "TEXT-LEVEL FIXTURE. The Medimix image files are not present in this repository, so this fixture encodes the OCR lines of the pack's two photographed surfaces (front label + back label) exactly as the declaration set for this product was supplied. Geometry is approximate but internally consistent (two images, real bbox ordering, one reading order). When the photographs are added to the repository, replace this file with the OCR dump of the same two surfaces — no production code and no assertion in the test module needs to change.",
+  "roles": ["FRONT", "BACK"],
+  "distinguishes": [
+    "a cosmetic (toilet soap) must not be dragged into food-specific expectations",
+    "one combined 'Mfg. & Use Before: 04/26 & 03/28' line must split into the manufacturing month/year and the use-before month/year without cross-wiring",
+    "the composite pack composition (4 x 150 g + 1 x 150 g FREE) must not replace the declared net quantity of 750 g",
+    "a unit sale price (₹0.29/g) must never be published as the MRP",
+    "the manufacturer entity is the text after the 'Mfd. by' anchor, never the product title"
+  ],
+  "ocr_lines": [
+    { "image": 1, "text": "MEDIMIX", "confidence": 0.94, "bbox": [280, 60, 520, 130], "variant": "original" },
+    { "image": 1, "text": "AYURVEDIC", "confidence": 0.9, "bbox": [300, 150, 500, 190], "variant": "original" },
+    { "image": 1, "text": "SOAP", "confidence": 0.91, "bbox": [352, 196, 448, 232], "variant": "original" },
+    { "image": 1, "text": "WITH 18 HERBS", "confidence": 0.86, "bbox": [316, 240, 484, 270], "variant": "original" },
+    { "image": 1, "text": "TOILET SOAP", "confidence": 0.88, "bbox": [320, 286, 480, 314], "variant": "original" },
+    { "image": 1, "text": "NET WT. 750 g", "confidence": 0.92, "bbox": [300, 330, 500, 358], "variant": "original" },
+    { "image": 1, "text": "MRP ₹220.00 (Incl. of all taxes)", "confidence": 0.89, "bbox": [268, 366, 532, 396], "variant": "original" },
+    { "image": 1, "text": "Unit Sale Price ₹0.29/g", "confidence": 0.87, "bbox": [300, 402, 500, 428], "variant": "original" },
+    { "image": 1, "text": "MADE IN INDIA", "confidence": 0.9, "bbox": [326, 470, 474, 498], "variant": "original" },
+
+    { "image": 2, "text": "Mfd. by: AVA CHOLAYIL HEALTH CARE PVT. LTD.", "confidence": 0.83, "bbox": [60, 70, 840, 104], "variant": "original" },
+    { "image": 2, "text": "41, Poonamallee High Road, Arumbakkam, Chennai - 600 106", "confidence": 0.69, "bbox": [60, 110, 700, 140], "variant": "original" },
+    { "image": 2, "text": "Batch No.: B2404A", "confidence": 0.85, "bbox": [60, 168, 420, 196], "variant": "original" },
+    { "image": 2, "text": "Mfg. & Use Before: 04/26 & 03/28", "confidence": 0.81, "bbox": [60, 204, 620, 232], "variant": "original" },
+    { "image": 2, "text": "PACK COMPOSITION: 4 X 150 G + 1 X 150 G FREE", "confidence": 0.78, "bbox": [60, 240, 780, 268], "variant": "original" },
+    { "image": 2, "text": "Consumer Care: 18001031282", "confidence": 0.88, "bbox": [60, 300, 480, 328], "variant": "original" },
+    { "image": 2, "text": "customercare@avacare.in", "confidence": 0.9, "bbox": [60, 336, 430, 362], "variant": "original" },
+    { "image": 2, "text": "www.mymedimix.com", "confidence": 0.91, "bbox": [60, 370, 380, 396], "variant": "original" },
+    { "image": 2, "text": "FOR EXTERNAL USE ONLY", "confidence": 0.84, "bbox": [60, 452, 420, 480], "variant": "original" }
+  ],
+  "expected_fields": {
+    "brand": { "value": "MEDIMIX" },
+    "product_name": { "value_contains": "AYURVEDIC" },
+    "net_quantity": { "value": "750", "unit": "g", "must_not_be": ["600", "450"] },
+    "mrp": { "value": "220.00", "must_not_be": ["0.29"] },
+    "unit_sale_price": { "value_contains": "0.29" },
+    "date_manufacturing": { "value": "2026-04" },
+    "date_expiry": { "value": "2028-03", "must_not_be": ["2026-04"] },
+    "manufacturer": { "value_contains": "AVA CHOLAYIL", "must_not_contain": "AYURVEDIC" },
+    "country_of_origin": { "value_contains": "India" },
+    "consumer_care_phone": { "value_contains": "18001031282" },
+    "consumer_care_email": { "value_contains": "avacare.in" },
+    "website": { "value_contains": "mymedimix" },
+    "batch_lot": { "value": "B2404A" }
+  },
+  "never_auto_absent": [
+    "brand",
+    "product_name",
+    "net_quantity",
+    "mrp",
+    "unit_sale_price",
+    "date_manufacturing",
+    "date_expiry",
+    "manufacturer",
+    "consumer_care_phone",
+    "consumer_care_email",
+    "batch_lot"
+  ],
+  "classification": {
+    "expect_category": "COSMETIC",
+    "must_not_be": ["FOOD", "BEVERAGE"],
+    "no_food_declarations": true
+  }
+}

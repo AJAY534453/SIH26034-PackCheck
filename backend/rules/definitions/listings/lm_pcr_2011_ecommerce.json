@@ -1,0 +1,56 @@
+{
+  "catalog_id": "ecommerce_listing",
+  "source_document": "Legal Metrology (Packaged Commodities) Rules, 2011 — Rule 6 (declarations to be made on every package), including sub-rule (10) on e-commerce entities; Department of Consumer Affairs, Ministry of Consumer Affairs, Food & Public Distribution",
+  "source_url": "https://consumeraffairs.gov.in/public/upload/admin/cmsfiles/whatsnews/Book_on_Legal_Metrology_Packaged_Commodities_Rules,2011_with_all_amendments_whatsnews.pdf",
+  "catalog_note": "This catalog is used ONLY by the online-listing / package-vs-listing tools. It is deliberately kept in a sub-directory so the package INSPECTION pipeline (backend/rules/registry.py, which globs definitions/*.json) never scores a listing requirement against a photograph of a pack, and a listing requirement never enters a package compliance percentage.",
+  "legal_status_values": {
+    "VERIFIED_PRIMARY": "Read from an official/primary source (Gazette, DoCA publication, India Code).",
+    "VERIFIED_SECONDARY_TEXT": "Substance confirmed by the departmental FAQ and/or multiple secondary texts; the notification number/date still needs confirming against the Gazette copy before the citation is treated as authoritative.",
+    "LEGAL_REFERENCE_REQUIRES_VERIFICATION": "Not confidently verified. The application must not assert this as a legal requirement; it is surfaced for the officer to verify.",
+    "APPLICATION_POLICY_NOT_A_LEGAL_PROVISION": "A comparison or workflow rule of this application. It is NOT a statutory requirement and must never be presented as one."
+  },
+  "checks": [
+    {
+      "check_id": "LIST-6-10-DECLARATIONS",
+      "rule_number": "6(10)",
+      "title": "Online listing displays the mandatory declarations",
+      "description": "Rule 6(10) requires an e-commerce entity to ensure that the mandatory declarations — the name and address of the manufacturer/packer/importer, the country of origin where the commodity is imported, the common or generic name, the net quantity, the retail sale price (MRP), the unit sale price where applicable and the consumer-care details — are displayed on the digital and electronic network used for e-commerce.",
+      "requirement": "The mandatory declarations that Rule 6 requires on the package are displayed in the online listing.",
+      "legal_status": "VERIFIED_SECONDARY_TEXT",
+      "legal_status_note": "Sub-rule (10) of Rule 6 (e-commerce entities) is quoted consistently by the departmental FAQ material and multiple published texts of the amended rules. The exact Gazette notification number and date of its insertion, and any later amendment, must be confirmed against the department's copy before this citation is treated as authoritative in a proceeding.",
+      "source_reference": "LM (PC) Rules, 2011 — Rule 6(10) (e-commerce entity: mandatory declarations displayed on the digital/electronic network), read with Rule 6(1)",
+      "source_url": "https://consumeraffairs.gov.in/public/upload/admin/cmsfiles/whatsnews/Book_on_Legal_Metrology_Packaged_Commodities_Rules,2011_with_all_amendments_whatsnews.pdf",
+      "watched_fields": [
+        "manufacturer",
+        "country_of_origin",
+        "net_quantity",
+        "mrp",
+        "unit_sale_price",
+        "consumer_care_phone",
+        "consumer_care_email",
+        "common_name"
+      ],
+      "minimum_ratio": 0.6,
+      "applies_when": "listing"
+    },
+    {
+      "check_id": "LIST-CONSISTENCY-POLICY",
+      "rule_number": "application policy",
+      "title": "Package versus listing consistency",
+      "description": "Compares the declarations read from the package against the same declarations read from the online listing. A difference between the two is a POTENTIAL INCONSISTENCY and a reason to inspect: the application does not, on its own, establish that any particular difference breaches any specific provision — the applicable legal basis has to be established for the facts of the case.",
+      "requirement": "Declarations shown in the listing agree with the declarations on the package.",
+      "legal_status": "APPLICATION_POLICY_NOT_A_LEGAL_PROVISION",
+      "legal_status_note": "This is a comparison performed by the application as inspection support. A mismatch is reported as a potential inconsistency, never as a confirmed violation.",
+      "source_reference": "Application policy — package/listing consistency check (no statutory threshold asserted)",
+      "watched_fields": [
+        "mrp",
+        "net_quantity",
+        "brand",
+        "manufacturer",
+        "country_of_origin",
+        "unit_sale_price"
+      ],
+      "applies_when": "both"
+    }
+  ]
+}

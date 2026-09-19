@@ -1,0 +1,4 @@
+image_file,gt_file,product_hint,notes
+# Add real package photos here, one per line, with a matching ground truth JSON.
+# Example:
+# my_photo_01.jpg,ground_truth/my_photo_01.json,biscuit 500g,clean indoor photo

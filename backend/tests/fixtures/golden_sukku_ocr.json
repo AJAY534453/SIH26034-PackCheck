@@ -1,0 +1,1855 @@
+{
+ "source": "golden regression fixture generated from the stored OCR of inspection INS-2026-000017 (image id 17). Expected values below were transcribed ONLY from what is visibly printed on the package; they are used exclusively by tests.",
+ "ocr_lines": [
+  {
+   "text": "GURUCHARA!",
+   "confidence": 0.7942674132910642,
+   "bbox": [
+    38,
+    336,
+    164,
+    376
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Yes Tou Can",
+   "confidence": 0.7677222912510236,
+   "bbox": [
+    64,
+    360,
+    140,
+    388
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "SUKKUKAAPI",
+   "confidence": 0.8497484380548651,
+   "bbox": [
+    64,
+    421,
+    1109,
+    555
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Powder",
+   "confidence": 0.8111870288848877,
+   "bbox": [
+    873,
+    544,
+    1095,
+    594
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "RECIPE:- Nivedha Sukku Kaapi is Naturally",
+   "confidence": 0.8814709186553955,
+   "bbox": [
+    56,
+    609,
+    693,
+    654
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "blended gives taste for tongue.Add.one spoon",
+   "confidence": 0.9041339450412327,
+   "bbox": [
+    58,
+    659,
+    697,
+    699
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "of Nivedha Sukku Kaapi Powder with one tumbler",
+   "confidence": 0.917913519321604,
+   "bbox": [
+    60,
+    702,
+    697,
+    745
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "of hot milk or hot water with sufficient sugar",
+   "confidence": 0.8987163000918449,
+   "bbox": [
+    60,
+    748,
+    697,
+    788
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "which gives taste for throat promotes a healthy",
+   "confidence": 0.9385847089191278,
+   "bbox": [
+    62,
+    794,
+    694,
+    835
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "body and cheer your senses.",
+   "confidence": 0.8998646970306124,
+   "bbox": [
+    63,
+    840,
+    422,
+    880
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "IngedentsAJAGGYYINGPPRUEVECINNAMONURMICCORIEAAIL",
+   "confidence": 0.6567955771271063,
+   "bbox": [
+    31,
+    888,
+    1158,
+    941
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "\"Not Contains Coffee Seeds\"",
+   "confidence": 0.8621554204395839,
+   "bbox": [
+    578,
+    930,
+    989,
+    973
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Nutrition Information per100g",
+   "confidence": 0.9147640407085419,
+   "bbox": [
+    30,
+    956,
+    377,
+    1003
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Manufactured &Marketed by:",
+   "confidence": 0.9009710682762994,
+   "bbox": [
+    545,
+    973,
+    1024,
+    1010
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "(approx)",
+   "confidence": 0.8758115238613553,
+   "bbox": [
+    149,
+    1001,
+    254,
+    1039
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "GURUCHARAAPRODUCT",
+   "confidence": 0.9193747871451907,
+   "bbox": [
+    443,
+    1026,
+    1122,
+    1089
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Fat",
+   "confidence": 0.7644332647323608,
+   "bbox": [
+    30,
+    1059,
+    94,
+    1105
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.840817894254412,
+   "bbox": [
+    216,
+    1067,
+    298,
+    1115
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "0.90",
+   "confidence": 0.7899938344955444,
+   "bbox": [
+    325,
+    1070,
+    381,
+    1110
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "19/115,,KonguNagar,MuthurRoad",
+   "confidence": 0.8984215875466665,
+   "bbox": [
+    467,
+    1075,
+    1101,
+    1127
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "*Carbohydrate",
+   "confidence": 0.8765751421451569,
+   "bbox": [
+    28,
+    1105,
+    204,
+    1161
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.8474590608051845,
+   "bbox": [
+    215,
+    1116,
+    298,
+    1163
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "89.97",
+   "confidence": 0.8317058682441711,
+   "bbox": [
+    319,
+    1119,
+    387,
+    1160
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "SenapathyPalayam,Vellakovil-638111,",
+   "confidence": 0.9106746150387658,
+   "bbox": [
+    430,
+    1110,
+    1131,
+    1166
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "*Protein",
+   "confidence": 0.8201669123437669,
+   "bbox": [
+    32,
+    1155,
+    136,
+    1202
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "g/10g",
+   "confidence": 0.8284871180852255,
+   "bbox": [
+    219,
+    1167,
+    297,
+    1212
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "1.99",
+   "confidence": 0.7807677388191223,
+   "bbox": [
+    325,
+    1169,
+    382,
+    1209
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Tirupur (Dt), Tamilnadu,India.",
+   "confidence": 0.8914047594993345,
+   "bbox": [
+    528,
+    1152,
+    1043,
+    1202
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Sugar",
+   "confidence": 0.7942759650094169,
+   "bbox": [
+    31,
+    1200,
+    124,
+    1256
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Customer Care:094875 93380",
+   "confidence": 0.9096112825252392,
+   "bbox": [
+    434,
+    1182,
+    1122,
+    1249
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.7895716684205192,
+   "bbox": [
+    219,
+    1215,
+    299,
+    1260
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "53.15",
+   "confidence": 0.8257176180680593,
+   "bbox": [
+    320,
+    1217,
+    389,
+    1258
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Energy",
+   "confidence": 0.8232562392950058,
+   "bbox": [
+    34,
+    1247,
+    136,
+    1303
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "E.mail:gurucharaa_product@yahoo.com",
+   "confidence": 0.9465262426270379,
+   "bbox": [
+    449,
+    1223,
+    1128,
+    1283
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Kcal/100g",
+   "confidence": 0.86863574385643,
+   "bbox": [
+    207,
+    1263,
+    319,
+    1309
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Web:www.vedhaproducts.com",
+   "confidence": 0.9340881636509528,
+   "bbox": [
+    452,
+    1264,
+    1045,
+    1316
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Jsai Lic.No.:12419027000075",
+   "confidence": 0.8687998247998101,
+   "bbox": [
+    43,
+    1308,
+    404,
+    1376
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "BEST BEFORE 12 MONTHS",
+   "confidence": 0.8870438906279478,
+   "bbox": [
+    489,
+    1313,
+    1084,
+    1371
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "PackerReg.No:TNITPU/PC/24-22-02801",
+   "confidence": 0.8882032258169992,
+   "bbox": [
+    40,
+    1356,
+    399,
+    1413
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "FROM THE DATE OF MANUFACTURING",
+   "confidence": 0.9025477997718319,
+   "bbox": [
+    474,
+    1350,
+    1097,
+    1406
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Net Weight i500g",
+   "confidence": 0.8367526916896596,
+   "bbox": [
+    419,
+    1420,
+    702,
+    1453
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "M.R.P.",
+   "confidence": 0.7399070092609951,
+   "bbox": [
+    420,
+    1451,
+    511,
+    1478
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "ntl otali tases)",
+   "confidence": 0.5714519847841824,
+   "bbox": [
+    420,
+    1474,
+    571,
+    1493
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Mig.",
+   "confidence": 0.6166862487792969,
+   "bbox": [
+    418,
+    1487,
+    476,
+    1524
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "04702725",
+   "confidence": 0.5762672258747948,
+   "bbox": [
+    743,
+    1497,
+    923,
+    1519
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Use By",
+   "confidence": 0.817794680595398,
+   "bbox": [
+    423,
+    1517,
+    512,
+    1546
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "81190611211500581",
+   "confidence": 0.8528367280960083,
+   "bbox": [
+    48,
+    1522,
+    374,
+    1560
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Batch No",
+   "confidence": 0.7858697639571296,
+   "bbox": [
+    425,
+    1543,
+    547,
+    1570
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "90130",
+   "confidence": 0.7387696703275045,
+   "bbox": [
+    741,
+    1541,
+    854,
+    1562
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g375.94",
+   "confidence": 0.8102466091513634,
+   "bbox": [
+    300,
+    1269,
+    394,
+    1307
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "200.0010.4091",
+   "confidence": 0.6877382450870105,
+   "bbox": [
+    749,
+    1463,
+    1088,
+    1501
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Net Weight",
+   "confidence": 0.8094878136027943,
+   "bbox": [
+    415,
+    1420,
+    577,
+    1454
+   ],
+   "variant": "region_crop"
+  },
+  {
+   "text": ":5009",
+   "confidence": 0.6231202489137649,
+   "bbox": [
+    570,
+    1422,
+    704,
+    1452
+   ],
+   "variant": "region_crop"
+  },
+  {
+   "text": "M.R.P",
+   "confidence": 0.7027930907408396,
+   "bbox": [
+    420,
+    1452,
+    508,
+    1474
+   ],
+   "variant": "region_crop"
+  },
+  {
+   "text": "GURUCHARA!",
+   "confidence": 0.7942674132910642,
+   "bbox": [
+    38,
+    336,
+    164,
+    376
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Yes Tou Can",
+   "confidence": 0.7677222912510236,
+   "bbox": [
+    64,
+    360,
+    140,
+    388
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "SUKKUKAAPI",
+   "confidence": 0.8497484380548651,
+   "bbox": [
+    64,
+    421,
+    1109,
+    555
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Powder",
+   "confidence": 0.8111870288848877,
+   "bbox": [
+    873,
+    544,
+    1095,
+    594
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "RECIPE:- Nivedha Sukku Kaapi is Naturally",
+   "confidence": 0.8814709186553955,
+   "bbox": [
+    56,
+    609,
+    693,
+    654
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "blended gives taste for tongue.Add.one spoon",
+   "confidence": 0.9041339450412327,
+   "bbox": [
+    58,
+    659,
+    697,
+    699
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "of Nivedha Sukku Kaapi Powder with one tumbler",
+   "confidence": 0.917913519321604,
+   "bbox": [
+    60,
+    702,
+    697,
+    745
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "of hot milk or hot water with sufficient sugar",
+   "confidence": 0.8987163000918449,
+   "bbox": [
+    60,
+    748,
+    697,
+    788
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "which gives taste for throat promotes a healthy",
+   "confidence": 0.9385847089191278,
+   "bbox": [
+    62,
+    794,
+    694,
+    835
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "body and cheer your senses.",
+   "confidence": 0.8998646970306124,
+   "bbox": [
+    63,
+    840,
+    422,
+    880
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "IngedentsAJAGGYYINGPPRUEVECINNAMONURMICCORIEAAIL",
+   "confidence": 0.6567955771271063,
+   "bbox": [
+    31,
+    888,
+    1158,
+    941
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "\"Not Contains Coffee Seeds\"",
+   "confidence": 0.8621554204395839,
+   "bbox": [
+    578,
+    930,
+    989,
+    973
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Nutrition Information per100g",
+   "confidence": 0.9147640407085419,
+   "bbox": [
+    30,
+    956,
+    377,
+    1003
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Manufactured &Marketed by:",
+   "confidence": 0.9009710682762994,
+   "bbox": [
+    545,
+    973,
+    1024,
+    1010
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "(approx)",
+   "confidence": 0.8758115238613553,
+   "bbox": [
+    149,
+    1001,
+    254,
+    1039
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "GURUCHARAAPRODUCT",
+   "confidence": 0.9193747871451907,
+   "bbox": [
+    443,
+    1026,
+    1122,
+    1089
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Fat",
+   "confidence": 0.7644332647323608,
+   "bbox": [
+    30,
+    1059,
+    94,
+    1105
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.840817894254412,
+   "bbox": [
+    216,
+    1067,
+    298,
+    1115
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "0.90",
+   "confidence": 0.7899938344955444,
+   "bbox": [
+    325,
+    1070,
+    381,
+    1110
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "19/115,,KonguNagar,MuthurRoad",
+   "confidence": 0.8984215875466665,
+   "bbox": [
+    467,
+    1075,
+    1101,
+    1127
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "*Carbohydrate",
+   "confidence": 0.8765751421451569,
+   "bbox": [
+    28,
+    1105,
+    204,
+    1161
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.8474590608051845,
+   "bbox": [
+    215,
+    1116,
+    298,
+    1163
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "89.97",
+   "confidence": 0.8317058682441711,
+   "bbox": [
+    319,
+    1119,
+    387,
+    1160
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "SenapathyPalayam,Vellakovil-638111,",
+   "confidence": 0.9106746150387658,
+   "bbox": [
+    430,
+    1110,
+    1131,
+    1166
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "*Protein",
+   "confidence": 0.8201669123437669,
+   "bbox": [
+    32,
+    1155,
+    136,
+    1202
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "g/10g",
+   "confidence": 0.8284871180852255,
+   "bbox": [
+    219,
+    1167,
+    297,
+    1212
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "1.99",
+   "confidence": 0.7807677388191223,
+   "bbox": [
+    325,
+    1169,
+    382,
+    1209
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Tirupur (Dt), Tamilnadu,India.",
+   "confidence": 0.8914047594993345,
+   "bbox": [
+    528,
+    1152,
+    1043,
+    1202
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Sugar",
+   "confidence": 0.7942759650094169,
+   "bbox": [
+    31,
+    1200,
+    124,
+    1256
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Customer Care:094875 93380",
+   "confidence": 0.9096112825252392,
+   "bbox": [
+    434,
+    1182,
+    1122,
+    1249
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.7895716684205192,
+   "bbox": [
+    219,
+    1215,
+    299,
+    1260
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "53.15",
+   "confidence": 0.8257176180680593,
+   "bbox": [
+    320,
+    1217,
+    389,
+    1258
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Energy",
+   "confidence": 0.8232562392950058,
+   "bbox": [
+    34,
+    1247,
+    136,
+    1303
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "E.mail:gurucharaa_product@yahoo.com",
+   "confidence": 0.9465262426270379,
+   "bbox": [
+    449,
+    1223,
+    1128,
+    1283
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Kcal/100g",
+   "confidence": 0.86863574385643,
+   "bbox": [
+    207,
+    1263,
+    319,
+    1309
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Web:www.vedhaproducts.com",
+   "confidence": 0.9340881636509528,
+   "bbox": [
+    452,
+    1264,
+    1045,
+    1316
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Jsai Lic.No.:12419027000075",
+   "confidence": 0.8687998247998101,
+   "bbox": [
+    43,
+    1308,
+    404,
+    1376
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "BEST BEFORE 12 MONTHS",
+   "confidence": 0.8870438906279478,
+   "bbox": [
+    489,
+    1313,
+    1084,
+    1371
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "PackerReg.No:TNITPU/PC/24-22-02801",
+   "confidence": 0.8882032258169992,
+   "bbox": [
+    40,
+    1356,
+    399,
+    1413
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "FROM THE DATE OF MANUFACTURING",
+   "confidence": 0.9025477997718319,
+   "bbox": [
+    474,
+    1350,
+    1097,
+    1406
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Net Weight i500g",
+   "confidence": 0.8367526916896596,
+   "bbox": [
+    419,
+    1420,
+    702,
+    1453
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "M.R.P.",
+   "confidence": 0.7399070092609951,
+   "bbox": [
+    420,
+    1451,
+    511,
+    1478
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "ntl otali tases)",
+   "confidence": 0.5714519847841824,
+   "bbox": [
+    420,
+    1474,
+    571,
+    1493
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Mig.",
+   "confidence": 0.6166862487792969,
+   "bbox": [
+    418,
+    1487,
+    476,
+    1524
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "04702725",
+   "confidence": 0.5762672258747948,
+   "bbox": [
+    743,
+    1497,
+    923,
+    1519
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Use By",
+   "confidence": 0.817794680595398,
+   "bbox": [
+    423,
+    1517,
+    512,
+    1546
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "81190611211500581",
+   "confidence": 0.8528367280960083,
+   "bbox": [
+    48,
+    1522,
+    374,
+    1560
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Batch No",
+   "confidence": 0.7858697639571296,
+   "bbox": [
+    425,
+    1543,
+    547,
+    1570
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "90130",
+   "confidence": 0.7387696703275045,
+   "bbox": [
+    741,
+    1541,
+    854,
+    1562
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g375.94",
+   "confidence": 0.8102466091513634,
+   "bbox": [
+    300,
+    1269,
+    394,
+    1307
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "200.0010.4091",
+   "confidence": 0.6877382450870105,
+   "bbox": [
+    749,
+    1463,
+    1088,
+    1501
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Net Weight",
+   "confidence": 0.8094878136027943,
+   "bbox": [
+    415,
+    1420,
+    577,
+    1454
+   ],
+   "variant": "region_crop"
+  },
+  {
+   "text": ":5009",
+   "confidence": 0.6231202489137649,
+   "bbox": [
+    570,
+    1422,
+    704,
+    1452
+   ],
+   "variant": "region_crop"
+  },
+  {
+   "text": "M.R.P",
+   "confidence": 0.7027930907408396,
+   "bbox": [
+    420,
+    1452,
+    508,
+    1474
+   ],
+   "variant": "region_crop"
+  },
+  {
+   "text": "GURUCHARA!",
+   "confidence": 0.7942674132910642,
+   "bbox": [
+    38,
+    336,
+    164,
+    376
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Yes Tou Can",
+   "confidence": 0.7677222912510236,
+   "bbox": [
+    64,
+    360,
+    140,
+    388
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "SUKKUKAAPI",
+   "confidence": 0.8497484380548651,
+   "bbox": [
+    64,
+    421,
+    1109,
+    555
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Powder",
+   "confidence": 0.8111870288848877,
+   "bbox": [
+    873,
+    544,
+    1095,
+    594
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "RECIPE:- Nivedha Sukku Kaapi is Naturally",
+   "confidence": 0.8814709186553955,
+   "bbox": [
+    56,
+    609,
+    693,
+    654
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "blended gives taste for tongue.Add.one spoon",
+   "confidence": 0.9041339450412327,
+   "bbox": [
+    58,
+    659,
+    697,
+    699
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "of Nivedha Sukku Kaapi Powder with one tumbler",
+   "confidence": 0.917913519321604,
+   "bbox": [
+    60,
+    702,
+    697,
+    745
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "of hot milk or hot water with sufficient sugar",
+   "confidence": 0.8987163000918449,
+   "bbox": [
+    60,
+    748,
+    697,
+    788
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "which gives taste for throat promotes a healthy",
+   "confidence": 0.9385847089191278,
+   "bbox": [
+    62,
+    794,
+    694,
+    835
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "body and cheer your senses.",
+   "confidence": 0.8998646970306124,
+   "bbox": [
+    63,
+    840,
+    422,
+    880
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "IngedentsAJAGGYYINGPPRUEVECINNAMONURMICCORIEAAIL",
+   "confidence": 0.6567955771271063,
+   "bbox": [
+    31,
+    888,
+    1158,
+    941
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "\"Not Contains Coffee Seeds\"",
+   "confidence": 0.8621554204395839,
+   "bbox": [
+    578,
+    930,
+    989,
+    973
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Nutrition Information per100g",
+   "confidence": 0.9147640407085419,
+   "bbox": [
+    30,
+    956,
+    377,
+    1003
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Manufactured &Marketed by:",
+   "confidence": 0.9009710682762994,
+   "bbox": [
+    545,
+    973,
+    1024,
+    1010
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "(approx)",
+   "confidence": 0.8758115238613553,
+   "bbox": [
+    149,
+    1001,
+    254,
+    1039
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "GURUCHARAAPRODUCT",
+   "confidence": 0.9193747871451907,
+   "bbox": [
+    443,
+    1026,
+    1122,
+    1089
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Fat",
+   "confidence": 0.7644332647323608,
+   "bbox": [
+    30,
+    1059,
+    94,
+    1105
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.840817894254412,
+   "bbox": [
+    216,
+    1067,
+    298,
+    1115
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "0.90",
+   "confidence": 0.7899938344955444,
+   "bbox": [
+    325,
+    1070,
+    381,
+    1110
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "19/115,,KonguNagar,MuthurRoad",
+   "confidence": 0.8984215875466665,
+   "bbox": [
+    467,
+    1075,
+    1101,
+    1127
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "*Carbohydrate",
+   "confidence": 0.8765751421451569,
+   "bbox": [
+    28,
+    1105,
+    204,
+    1161
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.8474590608051845,
+   "bbox": [
+    215,
+    1116,
+    298,
+    1163
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "89.97",
+   "confidence": 0.8317058682441711,
+   "bbox": [
+    319,
+    1119,
+    387,
+    1160
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "SenapathyPalayam,Vellakovil-638111,",
+   "confidence": 0.9106746150387658,
+   "bbox": [
+    430,
+    1110,
+    1131,
+    1166
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "*Protein",
+   "confidence": 0.8201669123437669,
+   "bbox": [
+    32,
+    1155,
+    136,
+    1202
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "g/10g",
+   "confidence": 0.8284871180852255,
+   "bbox": [
+    219,
+    1167,
+    297,
+    1212
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "1.99",
+   "confidence": 0.7807677388191223,
+   "bbox": [
+    325,
+    1169,
+    382,
+    1209
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Tirupur (Dt), Tamilnadu,India.",
+   "confidence": 0.8914047594993345,
+   "bbox": [
+    528,
+    1152,
+    1043,
+    1202
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Sugar",
+   "confidence": 0.7942759650094169,
+   "bbox": [
+    31,
+    1200,
+    124,
+    1256
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Customer Care:094875 93380",
+   "confidence": 0.9096112825252392,
+   "bbox": [
+    434,
+    1182,
+    1122,
+    1249
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g/100g",
+   "confidence": 0.7895716684205192,
+   "bbox": [
+    219,
+    1215,
+    299,
+    1260
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "53.15",
+   "confidence": 0.8257176180680593,
+   "bbox": [
+    320,
+    1217,
+    389,
+    1258
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "*Energy",
+   "confidence": 0.8232562392950058,
+   "bbox": [
+    34,
+    1247,
+    136,
+    1303
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "E.mail:gurucharaa_product@yahoo.com",
+   "confidence": 0.9465262426270379,
+   "bbox": [
+    449,
+    1223,
+    1128,
+    1283
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Kcal/100g",
+   "confidence": 0.86863574385643,
+   "bbox": [
+    207,
+    1263,
+    319,
+    1309
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Web:www.vedhaproducts.com",
+   "confidence": 0.9340881636509528,
+   "bbox": [
+    452,
+    1264,
+    1045,
+    1316
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Jsai Lic.No.:12419027000075",
+   "confidence": 0.8687998247998101,
+   "bbox": [
+    43,
+    1308,
+    404,
+    1376
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "BEST BEFORE 12 MONTHS",
+   "confidence": 0.8870438906279478,
+   "bbox": [
+    489,
+    1313,
+    1084,
+    1371
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "PackerReg.No:TNITPU/PC/24-22-02801",
+   "confidence": 0.8882032258169992,
+   "bbox": [
+    40,
+    1356,
+    399,
+    1413
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "FROM THE DATE OF MANUFACTURING",
+   "confidence": 0.9025477997718319,
+   "bbox": [
+    474,
+    1350,
+    1097,
+    1406
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Net Weight i500g",
+   "confidence": 0.8367526916896596,
+   "bbox": [
+    419,
+    1420,
+    702,
+    1453
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "M.R.P.",
+   "confidence": 0.7399070092609951,
+   "bbox": [
+    420,
+    1451,
+    511,
+    1478
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "ntl otali tases)",
+   "confidence": 0.5714519847841824,
+   "bbox": [
+    420,
+    1474,
+    571,
+    1493
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Mig.",
+   "confidence": 0.6166862487792969,
+   "bbox": [
+    418,
+    1487,
+    476,
+    1524
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "04702725",
+   "confidence": 0.5762672258747948,
+   "bbox": [
+    743,
+    1497,
+    923,
+    1519
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Use By",
+   "confidence": 0.817794680595398,
+   "bbox": [
+    423,
+    1517,
+    512,
+    1546
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "81190611211500581",
+   "confidence": 0.8528367280960083,
+   "bbox": [
+    48,
+    1522,
+    374,
+    1560
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "Batch No",
+   "confidence": 0.7858697639571296,
+   "bbox": [
+    425,
+    1543,
+    547,
+    1570
+   ],
+   "variant": "original"
+  },
+  {
+   "text": "90130",
+   "confidence": 0.7387696703275045,
+   "bbox": [
+    741,
+    1541,
+    854,
+    1562
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "g375.94",
+   "confidence": 0.8102466091513634,
+   "bbox": [
+    300,
+    1269,
+    394,
+    1307
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "200.0010.4091",
+   "confidence": 0.6877382450870105,
+   "bbox": [
+    749,
+    1463,
+    1088,
+    1501
+   ],
+   "variant": "upscaled"
+  },
+  {
+   "text": "Net Weight",
+   "confidence": 0.8094878136027943,
+   "bbox": [
+    415,
+    1420,
+    577,
+    1454
+   ],
+   "variant": "region_crop"
+  },
+  {
+   "text": ":5009",
+   "confidence": 0.6231202489137649,
+   "bbox": [
+    570,
+    1422,
+    704,
+    1452
+   ],
+   "variant": "region_crop"
+  },
+  {
+   "text": "M.R.P",
+   "confidence": 0.7027930907408396,
+   "bbox": [
+    420,
+    1452,
+    508,
+    1474
+   ],
+   "variant": "region_crop"
+  }
+ ],
+ "expected_fields": {
+  "fssai_license": {
+   "state": "DETECTED",
+   "normalized_contains": "12419027000075",
+   "no_conflict": true
+  },
+  "consumer_care_phone": {
+   "state": "DETECTED",
+   "normalized_contains": "09487593380",
+   "no_conflict": true
+  },
+  "consumer_care_email": {
+   "state": "DETECTED",
+   "normalized_contains": "gurucharaa_product@yahoo.com",
+   "no_conflict": true
+  },
+  "website": {
+   "state": "DETECTED",
+   "normalized_contains": "www.vedhaproducts.com",
+   "no_conflict": true
+  },
+  "mrp": {
+   "state": "DETECTED",
+   "normalized_contains": "200",
+   "no_conflict": true
+  },
+  "net_quantity": {
+   "state": "DETECTED",
+   "normalized_contains": "\"500\"",
+   "no_conflict": true
+  },
+  "batch_lot": {
+   "state": "DETECTED",
+   "normalized_contains": "90130",
+   "no_conflict": true
+  },
+  "date_best_before": {
+   "state": "DETECTED",
+   "normalized_contains": "12 months",
+   "no_conflict": true
+  },
+  "manufacturer": {
+   "state": "DETECTED",
+   "normalized_contains": "GURUCHARAAPRODUCT",
+   "no_conflict": true
+  },
+  "product_name": {
+   "state": "DETECTED",
+   "normalized_contains": "SUKKUKAAPI",
+   "no_conflict": true
+  },
+  "date_manufacturing": {
+   "state": "UNCERTAIN"
+  },
+  "date_expiry": {
+   "state": "UNCERTAIN"
+  },
+  "unit_sale_price": {
+   "state": "MISSING"
+  }
+ },
+ "never_auto_absent": [
+  "brand",
+  "common_name",
+  "country_of_origin",
+  "packer",
+  "importer"
+ ]
+}

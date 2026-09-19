@@ -1,0 +1,85 @@
+{
+  "product_id": "p0001",
+  "category": "instant coffee mix",
+  "package_type": "pouch",
+  "annotator": "human-verified from the package photograph (back panel + front panel)",
+  "annotated_at": "2026-09-15T15:45:00+00:00",
+  "_provenance": "Ground truth was read off the package photograph by a human. It is stored HERE ONLY. It must never be copied into extraction logic, patterns, thresholds or tests as a product-specific shortcut.",
+  "_views_note": "Only the back panel photo is held in raw/ for now; the front panel was read during the verification session and is still to be ingested as a second view.",
+  "views": [
+    {
+      "file": "back.jpeg",
+      "view": "back",
+      "quality": "GOOD",
+      "note": "full back panel: nutrition table, FSSAI, consumer care, manufacturer block, inkjet date row"
+    }
+  ],
+  "fields": {
+    "product_name": {
+      "value": "SUKKUKAAPI",
+      "raw_text": "SUKKU KAAPI (display title on the front panel)",
+      "confidence": 1.0
+    },
+    "brand": {
+      "value": "GURUCHARA",
+      "raw_text": "GURUCHARA logo badge with the tagline 'Yes You Can'",
+      "confidence": 1.0
+    },
+    "manufacturer": {
+      "value": "GURUCHARAA PRODUCT",
+      "raw_text": "GURUCHARAA PRODUCT followed by the registered address block",
+      "confidence": 1.0
+    },
+    "mrp": {
+      "value": "200",
+      "raw_text": "MRP Rs. 200.00",
+      "confidence": 1.0
+    },
+    "net_quantity": {
+      "value": "500",
+      "unit": "g",
+      "raw_text": "Net Wt. 500 g",
+      "confidence": 1.0
+    },
+    "batch_lot": {
+      "value": "90130",
+      "raw_text": "Batch 90130 (inkjet-printed row)",
+      "confidence": 1.0
+    },
+    "date_manufacturing": {
+      "value": "2025-02-04",
+      "raw_text": "Mfg 04/02/25 (inkjet-printed row)",
+      "confidence": 1.0
+    },
+    "date_expiry": {
+      "value": "2026-02-03",
+      "raw_text": "Use By 03/02/26 (inkjet-printed row)",
+      "confidence": 1.0
+    },
+    "date_best_before": {
+      "value": "12 months",
+      "raw_text": "BEST BEFORE 12 MONTHS FROM THE DATE OF MANUFACTURING",
+      "confidence": 1.0
+    },
+    "fssai_license": {
+      "value": "12419027000075",
+      "raw_text": "FSSAI Lic. No. 12419027000075",
+      "confidence": 1.0
+    },
+    "consumer_care_phone": {
+      "value": "09487593380",
+      "raw_text": "Customer Care No. 09487593380",
+      "confidence": 1.0
+    },
+    "consumer_care_email": {
+      "value": "gurucharaa_product@yahoo.com",
+      "raw_text": "care@… as printed on the back panel",
+      "confidence": 1.0
+    },
+    "website": {
+      "value": "www.vedhaproducts.com",
+      "raw_text": "www.vedhaproducts.com",
+      "confidence": 1.0
+    }
+  }
+}

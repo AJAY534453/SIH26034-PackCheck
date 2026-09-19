@@ -1,0 +1,16 @@
+{
+  "_instructions": "Copy this schema for each real image. Values must come from YOUR OWN reading of the image, entered by a human. Omit fields not visible. This file is an example and is excluded from evaluation.",
+  "mrp": "200",
+  "net_quantity_value": "500",
+  "net_quantity_unit": "g",
+  "batch_lot": "A0130",
+  "date_manufacturing": "2025-02-04",
+  "date_best_before": "5 months",
+  "fssai_license": "10012345678901",
+  "manufacturer": "ABC Foods Pvt Ltd",
+  "country_of_origin": "India",
+  "consumer_care_phone": "18001234567",
+  "consumer_care_email": "care@abcfoods.com",
+  "website": "www.abcfoods.com",
+  "product_name": "KRACKJACK BISCUITS"
+}
