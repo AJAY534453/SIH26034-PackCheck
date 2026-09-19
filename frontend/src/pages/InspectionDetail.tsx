@@ -13,6 +13,7 @@ import {
 import EvidenceViewer from '../components/EvidenceViewer'
 import Modal from '../components/Modal'
 import { FontSizePanel, VerdictSplit } from '../components/CompliancePanels'
+import VisionPanel from '../components/VisionPanel'
 import { ReprocessPanel } from '../components/ReprocessPanel'
 import type { EvidenceOut, FontSizeCompliance, InspectionDetail as Detail, ScanDetailPayload } from '../types'
 
@@ -667,11 +668,55 @@ export default function InspectionDetail() {
         </Card>
       )}
 
-      {/* 8. analysis provenance, reprocessing and the before/after audit of every regeneration */}
+      {/* 8. what the vision engine measured on each face, with the stage timings of this run */}
+      <SectionHead
+        no="8"
+        title="Vision analysis (on-device)"
+        hint="regions, prominence and readability measured from the images — never a declaration value"
+      />
+      <div className="row2">
+        <Card title="Observations">
+          <VisionPanel vision={d.vision} images={d.images} evidence={d.evidence} />
+        </Card>
+        <Card title="Pipeline timings">
+          {Object.keys(d.stage_timings || {}).length === 0 ? (
+            <div className="muted">
+              No timings recorded for this run{d.provenance && !d.provenance.up_to_date ? ' — reprocess it to measure it again.' : '.'}
+            </div>
+          ) : (
+            <table className="tbl">
+              <thead><tr><th>Stage</th><th>Elapsed</th></tr></thead>
+              <tbody>
+                {Object.entries(d.stage_timings)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([stage, ms]) => (
+                    <tr key={stage}>
+                      <td>{stage.replace(/_/g, ' ')}</td>
+                      <td className="mono">{(ms / 1000).toFixed(1)} s</td>
+                    </tr>
+                  ))}
+                <tr>
+                  <td><b>Total pipeline</b></td>
+                  <td className="mono"><b>{(d.duration_ms / 1000).toFixed(1)} s</b></td>
+                </tr>
+              </tbody>
+            </table>
+          )}
+          <div className="mt">
+            <div className="muted">Perception sources for this result</div>
+            <div className="flex" style={{ marginTop: 6, flexWrap: 'wrap', gap: 6 }}>
+              <span className="chip mono">{d.vision_engine || 'vision engine not recorded'}</span>
+              <span className="chip">provider: {(d.provider_status || 'not recorded').replace(/_/g, ' ').toLowerCase()}</span>
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      {/* 9. analysis provenance, reprocessing and the before/after audit of every regeneration */}
       {d.provenance && (
         <>
           <SectionHead
-            no="8"
+            no="9"
             title="Analysis provenance & reprocessing"
             hint="what changed, when, by whom, and under which engine and rule set"
           />
@@ -684,7 +729,7 @@ export default function InspectionDetail() {
         </>
       )}
 
-      <SectionHead no="9" title="Review history & reports" />
+      <SectionHead no="10" title="Review history & reports" />
       <div className="row2">
         <Card title="Review history (audit)">
           {d.review_actions.length === 0 ? (

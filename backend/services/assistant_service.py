@@ -506,6 +506,60 @@ def _inspection_answer(db: Session, user: User, query: str, ctx: dict) -> dict |
             f"{round(float(scan.compliance_score or 0), 1)}% / {round(float(scan.coverage_score or 0), 1)}%",
         )
 
+    # ---------- perception: which sources actually saw the image, and what did they measure? ------
+    if any(k in q for k in PERCEPTION_WORDS):
+        from backend.models import VisionRegion
+        from backend.vision import status_text as vision_status_text
+
+        regions = db.query(VisionRegion).filter(VisionRegion.inspection_id == inspection.id).all()
+        kinds: dict[str, int] = {}
+        for region in regions:
+            kinds[region.kind] = kinds.get(region.kind, 0) + 1
+        readability = sorted(
+            {r.label.split("—")[-1].strip() for r in regions if r.kind == "LEGIBILITY"}
+        )
+        timings = dict(inspection.stage_timings or {})
+        slowest = sorted(timings.items(), key=lambda kv: kv[1], reverse=True)[:3]
+        points = [
+            f"On-device vision: {vision_status_text(inspection.vision_status) if inspection.vision_status else 'no status recorded for this run'}",
+            f"Engine {inspection.vision_engine or 'not recorded'}; provider {inspection.provider_status or 'NOT_CONFIGURED'}",
+        ]
+        if regions:
+            points.append(
+                f"Observations retained: {len(regions)} — "
+                + ", ".join(f"{count} × {kind.replace('_', ' ').lower()}" for kind, count in sorted(kinds.items()))
+                + "."
+            )
+        if readability:
+            points.append(
+                "Readability measured separately from the legal print height: "
+                + ", ".join(readability)
+                + ". A declaration can be readable on a photograph and still fail the Rule 7 millimetre minimum."
+            )
+        if slowest:
+            points.append(
+                "Stage timings: "
+                + " · ".join(f"{name.replace('_', ' ')} {ms / 1000:.1f} s" for name, ms in slowest)
+                + f" (whole pipeline {round((inspection.duration_ms or 0) / 1000, 1)} s)."
+            )
+        points.append(
+            "The vision engine observes the image — regions, prominence and readability. It never reads or "
+            "asserts a declaration value; values come from the extraction pipeline and are validated before use."
+        )
+        if inspection.provider_note:
+            points.append(f"Provider note: {inspection.provider_note}")
+        if inspection.vision_note:
+            points.append(inspection.vision_note)
+        return base(
+            f"Perception for {inspection.inspection_number}: "
+            f"{(inspection.vision_status or 'not recorded').replace('_', ' ').lower()}"
+            + (f" — {len(regions)} visual observation(s) retained" if regions else ""),
+            points,
+            "context_vision",
+            "On-device vision observations",
+            inspection.vision_engine or "on-device-vision",
+        )
+
     # ---------- evidence question about a named declaration ----------
     if any(k in q for k in ("evidence", "where did", "which image", "source image", "crop", "how do you know", "confiden")):
         name = _mentioned_field(q, db)
@@ -568,10 +622,17 @@ def _inspection_answer(db: Session, user: User, query: str, ctx: dict) -> dict |
 #: Question shapes that ask about the RECORD open on screen rather than about how the application
 #: works in general. With a record open these win over the general topics: "what is the compliance
 #: score?" means THIS score, while "what does the compliance score mean?" stays an explanation.
+#: What the perception sources did or did not do on the open record.
+PERCEPTION_WORDS = (
+    "vision", "visual", "perception", "which engine", "what engine", "ocr only",
+    "how long", "slow", "timing", "timings", "duration", "how was it analysed", "how was it analyzed",
+)
+
 _RECORD_INTENTS = (
     "pending", "manual review", "needs review", "finaliz", "approve", "recent",
     "reprocess", "migrat", "what changed", "corrected", "updated analysis",
     "evidence", "where did", "which image", "source image", "crop", "how do you know", "confiden",
+    *PERCEPTION_WORDS,
 )
 _SCORE_WORDS = ("score", "percentage", "coverage", "compliant", "verdict")
 _EXPLANATORY = ("mean", "meaning", "how is", "how are", "how do", "how does", "difference", "explain", "calculated", "formula")
@@ -891,6 +952,7 @@ def welcome(db: Session, user: User, context: dict | None = None) -> dict:
     if context_line:
         suggestions = [
             "Why does this need finalization?",
+            "What did vision identify?",
             "What evidence supports the detected values?",
             "What changed in the last reprocess?",
             *suggestions,

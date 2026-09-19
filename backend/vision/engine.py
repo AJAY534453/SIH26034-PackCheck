@@ -371,6 +371,12 @@ def prepare_image(path: Path, *, image_id: int = 0, filename: str = "") -> Image
     """Decode, downscale, mask and measure one image. Never raises; failures land in `error`."""
     if not available():
         return ImagePrep(image_id=image_id, filename=filename, error=availability_reason())
+    if not Path(path).exists():
+        return ImagePrep(
+            image_id=image_id,
+            filename=filename,
+            error=f"Image could not be read: '{filename or Path(path).name}' is not in the original-image store.",
+        )
     try:
         img = _load(path)
     except Exception as exc:  # pragma: no cover - filesystem dependent

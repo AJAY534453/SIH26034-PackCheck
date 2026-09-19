@@ -1,15 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { api, getRole, hasPermission } from '../services/api'
 import { Card } from '../components/Badges'
 import { Icon } from '../components/Icon'
 import { MigrationCard } from '../components/ReprocessPanel'
 import { Skeleton } from '../components/ui'
-import type { AIStatus } from '../types'
+import type { AIStatus, VisionHealth, VisionTestResult } from '../types'
 
 export default function Settings() {
   const [root, setRoot] = useState<{ name?: string; version?: string; ocr_available?: boolean } | null>(null)
   const [ai, setAi] = useState<AIStatus | null>(null)
+  const [vision, setVision] = useState<VisionHealth | null>(null)
+  const [test, setTest] = useState<VisionTestResult | null>(null)
+  const [testing, setTesting] = useState(false)
+  const [testError, setTestError] = useState('')
   const [loading, setLoading] = useState(true)
+  const testInput = useRef<HTMLInputElement>(null)
+
+  function loadVision() {
+    api.visionHealth().then(setVision).catch(() => setVision(null))
+  }
 
   useEffect(() => {
     api
@@ -18,7 +27,25 @@ export default function Settings() {
       .catch(() => setRoot(null))
       .finally(() => setLoading(false))
     api.aiStatus().then(setAi).catch(() => setAi(null))
+    loadVision()
   }, [])
+
+  /** Run both perception sources over one image, on demand. The response is the evidence. */
+  async function runVisionTest(file: File | undefined) {
+    if (!file) return
+    setTesting(true)
+    setTestError('')
+    setTest(null)
+    try {
+      setTest(await api.visionTest(file))
+      loadVision()
+    } catch (e) {
+      setTestError(e instanceof Error ? e.message : 'The vision self-test could not run')
+    } finally {
+      setTesting(false)
+      if (testInput.current) testInput.current.value = ''
+    }
+  }
 
   const role = getRole()
 
@@ -78,12 +105,122 @@ export default function Settings() {
               <dt>Fields a provider may report</dt><dd>{ai.fields.length} tracked declarations</dd>
             </dl>
             <p className="muted" style={{ marginTop: 12, lineHeight: 1.6 }}>
-              To enable vision extraction, set <code>GEMINI_API_KEY</code> (and optionally{' '}
-              <code>AI_MODEL</code>) in the server environment and restart the backend. Provider
-              readings enter the pipeline as candidates: they are validated, ranked against the OCR
-              evidence and marked for human review when the two disagree — they never decide
-              compliance.
+              The <b>on-device vision engine</b> ({vision?.engine || 'on-device-vision'}) always runs — it needs no
+              key and no network, and it is what makes vision analysis part of every scan. Setting{' '}
+              <code>GEMINI_API_KEY</code> (and optionally <code>AI_MODEL</code>) in the server environment adds the
+              optional provider on top: its readings enter the pipeline as candidates, are validated and ranked
+              against the OCR evidence, and are marked for human review when the two disagree. Neither source ever
+              decides compliance.
             </p>
+          </>
+        )}
+      </Card>
+
+      {/* Vision perception health: the on-device engine is checked live (no network), and the
+          optional provider is verified by an actual call — never reported as reachable on the
+          strength of a config flag alone. */}
+      <Card title="Vision engine health">
+        {!vision ? (
+          <Skeleton lines={3} />
+        ) : (
+          <>
+            <div className={vision.status === 'OK' ? 'alert success' : 'alert info'} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+              <Icon name={vision.on_device.available ? 'sparkles' : 'cpu'} />
+              <span>
+                <b>
+                  VISION ENGINE {vision.on_device.available ? 'ONLINE' : 'OFFLINE'} — {vision.engine}
+                </b>
+                <div style={{ marginTop: 4 }}>{vision.on_device.detail}</div>
+              </span>
+            </div>
+            <dl className="kv">
+              <dt>Always-on engine</dt><dd>{vision.engine} (local, offline, no API key)</dd>
+              <dt>Provider</dt><dd>{vision.provider} · {vision.model}</dd>
+              <dt>Provider configured</dt><dd>{vision.configured ? 'yes' : 'no — on-device vision still runs'}</dd>
+              <dt>Provider reachability</dt>
+              <dd className="muted">
+                {vision.reachable === null ? vision.reachable_note : vision.reachable ? 'reachable' : 'unreachable'}
+              </dd>
+              <dt>Last vision run</dt>
+              <dd>
+                {vision.last_successful_run ? (
+                  <>
+                    {vision.last_successful_run.inspection_number} ·{' '}
+                    {vision.last_successful_run.vision_status.replace(/_/g, ' ').toLowerCase()} ·{' '}
+                    {vision.last_successful_run.vision_ms != null
+                      ? `${(vision.last_successful_run.vision_ms / 1000).toFixed(1)} s vision`
+                      : 'timing not recorded'}
+                  </>
+                ) : (
+                  <span className="muted">No scan has recorded a perception status yet.</span>
+                )}
+              </dd>
+              {vision.last_error && (
+                <>
+                  <dt>Last error</dt><dd className="muted">{vision.last_error}</dd>
+                </>
+              )}
+            </dl>
+
+            <div className="mt">
+              <input
+                ref={testInput}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                hidden
+                onChange={(e) => runVisionTest(e.target.files?.[0])}
+              />
+              <button className="btn" onClick={() => testInput.current?.click()} disabled={testing}>
+                <Icon name="scan-line" /> {testing ? 'Testing…' : 'Run a live vision self-test'}
+              </button>
+              <span className="muted" style={{ marginLeft: 10 }}>
+                Upload one package image — both sources are exercised and the result is returned with
+                its latency and any error.
+              </span>
+            </div>
+            {testError && <div className="alert error mt">{testError}</div>}
+            {test && (
+              <div className="mt">
+                <div className="muted">Self-test result</div>
+                <dl className="kv">
+                  <dt>On-device</dt>
+                  <dd>
+                    {test.on_device.status || '—'}
+                    {test.on_device.latency_ms != null && ` · ${(test.on_device.latency_ms / 1000).toFixed(2)} s`}
+                    {test.on_device.regions ? ` · ${test.on_device.regions.length} region(s)` : ''}
+                    {test.on_device.readability ? ` · readability ${test.on_device.readability.replace(/^VISUALLY_/, '').toLowerCase()}` : ''}
+                  </dd>
+                  <dt>OCR lines used</dt><dd>{test.on_device.ocr_lines_used ?? 0}</dd>
+                  <dt>Provider call</dt>
+                  <dd>
+                    {test.provider_call.attempted
+                      ? `${test.provider_call.status}${test.provider_call.latency_ms != null ? ` · ${(test.provider_call.latency_ms / 1000).toFixed(2)} s` : ''} · ${test.provider_call.observations} observation(s)`
+                      : `not attempted — ${test.provider_call.detail || 'no provider configured'}`}
+                  </dd>
+                  {test.on_device.metrics && (
+                    <>
+                      <dt>Readability metrics</dt>
+                      <dd className="mono">
+                        sharpness {test.on_device.metrics.sharpness} · contrast {test.on_device.metrics.contrast} · glare{' '}
+                        {(test.on_device.metrics.glare * 100).toFixed(2)}%
+                      </dd>
+                    </>
+                  )}
+                  {test.on_device.hero_text && (
+                    <>
+                      <dt>Most prominent block</dt><dd className="mono">{test.on_device.hero_text}</dd>
+                    </>
+                  )}
+                </dl>
+                {test.errors.length > 0 && (
+                  <div className="alert error mt">
+                    {test.errors.map((e) => (
+                      <div key={e}>{e}</div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </>
         )}
       </Card>
