@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": "https://sih26034-packcheck.onrender.com"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://sih26034-packcheck.onrender.com/:path*"
+    }
+  ]
+}
